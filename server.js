@@ -12,10 +12,12 @@ server.on("connection", (socket) => {
     // Xử lý dữ liệu nhận được từ client ở đây
 
     // Gửi phản hồi cho client
-    if (message == "on") {
-      socket.send(`Turn on the light`);
+    if (message.toString() == "on") {
+      socket.send('on');
+    else if (message.toString() == "off"){
+      socket.send('off');
     } else {
-      socket.send(`Server received: Else`);
+      socket.send('else');
     }
   });
 
