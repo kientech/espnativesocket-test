@@ -14,7 +14,7 @@ server.on("connection", (socket) => {
     // Gửi phản hồi cho client
     if (message.toString() == "on") {
       socket.send('on');
-    else if (message.toString() == "off"){
+    elseif (message.toString() == "off"){
       socket.send('off');
     } else {
       socket.send('else');
