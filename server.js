@@ -9,16 +9,16 @@ server.on("connection", (socket) => {
   socket.on("message", (message) => {
     console.log("Received:", message.toString());
 
-    // Xử lý dữ liệu nhận được từ client ở đây
-
-    // Gửi phản hồi cho client
+    // Kiểm tra và xử lý dữ liệu nhận được từ client
     if (message.toString() === "on") {
+      // Gửi tin nhắn "on" cho client
       socket.send("on");
     } else if (message.toString() === "off") {
-      socket.send("on");
+      // Gửi tin nhắn "off" cho client
+      socket.send("off");
     } else {
-      socket.send("anything!!!");
-
+      // Gửi tin nhắn phản hồi nếu lệnh không hợp lệ
+      socket.send("Invalid command");
     }
   });
 
