@@ -1,5 +1,6 @@
 const WebSocket = require("ws");
 
+const PORT = process.env.PORT || 8080;
 const server = new WebSocket.Server({ port: PORT });
 
 server.on("connection", (socket) => {
@@ -26,7 +27,7 @@ server.on("connection", (socket) => {
     console.error("Socket error:", error);
   });
 });
-const PORT = process.env.PORT || 8080;
+
     server.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
     });
