@@ -11,8 +11,12 @@
   "dependencies": {
     "expo": "~50.0.14",
     "expo-status-bar": "~1.11.1",
+    "express": "^4.19.2",
     "react": "18.2.0",
-    "react-native": "0.73.6"
+    "react-native": "0.73.6",
+    "react-native-websocket": "^1.0.2",
+    "socket.io-client": "^4.7.5",
+    "ws": "^8.16.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
