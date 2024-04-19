@@ -12,12 +12,12 @@ server.on("connection", (socket) => {
     // Xử lý dữ liệu nhận được từ client ở đây
 
     // Gửi phản hồi cho client
-    if (message.toString() == "on") {
+    if (message.toString() === "on") {
       socket.send("on");
-    } else if (message.toString() == "off") {
+    } else if (message.toString() === "off") {
       socket.send("on");
     } else {
-      socket.send("anythin!!!");
+      socket.send("anything!!!");
 
     }
   });
