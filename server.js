@@ -13,11 +13,12 @@ server.on("connection", (socket) => {
 
     // Gửi phản hồi cho client
     if (message.toString() == "on") {
-      socket.send('on');
-    elseif (message.toString() == "off"){
-      socket.send('off');
+      socket.send("on");
+    } else if (message.toString() == "off") {
+      socket.send("on");
     } else {
-      socket.send('else');
+      socket.send("anythin!!!");
+
     }
   });
 
