@@ -20,7 +20,7 @@ server.on("connection", (socket) => {
   socket.on("message", (message) => {
     console.log("Received:", message.toString());
     let sensorDataDisplay = message.toString().split(" ")
-    console.log(sensorData)
+    console.log(sensorDataDisplay)
     const sendSensorData = () => {
       const temperature = sensorData[0]
       const humidity = sensorData[1] // Giả lập độ ẩm từ 50% đến 80%
