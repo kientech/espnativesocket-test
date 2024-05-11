@@ -10,7 +10,7 @@ server.on("connection", (socket) => {
     const humidity = Math.floor(Math.random() * (80 - 50 + 1)) + 50; // Giả lập độ ẩm từ 50% đến 80%
     const co2 = Math.floor(Math.random() * (800 - 400 + 1)) + 400; // Giả lập CO2 từ 400 ppm đến 800 ppm
     const sensorData = { temperature, humidity, co2 };
-    ws.send(JSON.stringify(sensorData)); // Chuyển đổi sang chuỗi JSON trước khi gửi
+    socket.send(JSON.stringify(sensorData)); // Chuyển đổi sang chuỗi JSON trước khi gửi
     console.log(
       `Temperature: ${temperature} - Humidity: ${humidity} - CO2: ${co2}`
     );
