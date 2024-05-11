@@ -21,9 +21,6 @@ socket.on("message", (message) => {
       }
     });
 });
-  socket.on("turnOnFan", (message) => {
-    console.log('turn on the fan', message)
-  });
 
     
     
