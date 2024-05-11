@@ -30,7 +30,7 @@ server.on("connection", (socket) => {
         `Temperature: ${temperature} - Humidity: ${humidity} - CO2: ${co2}`
       );
     }
-  };
+  });
     
     
     
