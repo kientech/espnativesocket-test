@@ -5,6 +5,12 @@ const server = new WebSocket.Server({ port: PORT });
 
 server.on("connection", (socket) => {
   console.log("A new client connected");
+  let sensorData = message.toString().split(" ");
+  const temperature = sensorData[0];
+  const humidity = sensorData[1];
+  const dataToSend = { temperature, humidity };
+  socket.send(JSON.stringify(dataToSend));
+  console.log(`Temperature: ${temperature} - Humidity: ${humidity}`);
   // const sendSensorData = () => {
   //   const temperature = Math.floor(Math.random() * (40 - 20 + 1)) + 20; // Giả lập nhiệt độ từ 20°C đến 40°C
   //   const humidity = Math.floor(Math.random() * (80 - 50 + 1)) + 50; // Giả lập độ ẩm từ 50% đến 80%
