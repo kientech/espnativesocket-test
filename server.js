@@ -19,14 +19,14 @@ server.on("connection", (socket) => {
 
   socket.on("message", (message) => {
     console.log("Received:", message.toString());
-    let sensorData = message.toString().split(" ")
+    let sensorDataDisplay = message.toString().split(" ")
     console.log(sensorData)
     const sendSensorData = () => {
       const temperature = sensorData[0]
       const humidity = sensorData[1] // Giả lập độ ẩm từ 50% đến 80%
       const co2 = sensorData[2] // Giả lập CO2 từ 400 ppm đến 800 ppm
-      const sensorDataDisplay = { temperature, humidity, co2 };
-      socket.send(JSON.stringify(sensorDataDisplay)); // Chuyển đổi sang chuỗi JSON trước khi gửi
+      const sensorData = { temperature, humidity, co2 };
+      socket.send(JSON.stringify(sensorData)); // Chuyển đổi sang chuỗi JSON trước khi gửi
       console.log(
         `Temperature: ${temperature} - Humidity: ${humidity} - CO2: ${co2}`
       );
