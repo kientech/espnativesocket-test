@@ -5,27 +5,6 @@ const server = new WebSocket.Server({ port: PORT });
 
 server.on("connection", (socket) => {
   console.log("A new client connected");
-  const sendSensorData = () => {
-    const temperature = Math.floor(Math.random() * (40 - 20 + 1)) + 20; // Giả lập nhiệt độ từ 20°C đến 40°C
-    const humidity = Math.floor(Math.random() * (80 - 50 + 1)) + 50; // Giả lập độ ẩm từ 50% đến 80%
-    const co2 = Math.floor(Math.random() * (800 - 400 + 1)) + 400; // Giả lập CO2 từ 400 ppm đến 800 ppm
-    const sensorData = { temperature, humidity, co2 };
-    ws.send(JSON.stringify(sensorData)); // Chuyển đổi sang chuỗi JSON trước khi gửi
-    console.log(
-      `Temperature: ${temperature} - Humidity: ${humidity} - CO2: ${co2}`
-    );
-  };
-  // const sendSensorData = () => {
-  //   const temperature = Math.floor(Math.random() * (40 - 20 + 1)) + 20; // Giả lập nhiệt độ từ 20°C đến 40°C
-  //   const humidity = Math.floor(Math.random() * (80 - 50 + 1)) + 50; // Giả lập độ ẩm từ 50% đến 80%
-  //   const co2 = Math.floor(Math.random() * (800 - 400 + 1)) + 400; // Giả lập CO2 từ 400 ppm đến 800 ppm
-  //   const sensorData = { temperature, humidity, co2 };
-  //   socket.send(JSON.stringify(sensorData)); // Chuyển đổi sang chuỗi JSON trước khi gửi
-  //   console.log(
-  //     `Temperature: ${temperature} - Humidity: ${humidity} - CO2: ${co2}`
-  //   );
-  // };
-  // const sensorDataInterval = setInterval(sendSensorData, 2000);
 
   // Inside the 'socket.on("message")' event handler
 socket.on("message", (message) => {
@@ -36,6 +15,11 @@ socket.on("message", (message) => {
   const dataToSend = { temperature, humidity };
   socket.send(JSON.stringify(dataToSend));
   console.log(`Temperature: ${temperature} - Humidity: ${humidity}`);
+  server.clients.forEach((client) => {
+      if (client !== socket && client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify(dataToSend));
+      }
+    });
 });
 
     
