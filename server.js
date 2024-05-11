@@ -17,21 +17,17 @@ server.on("connection", (socket) => {
   // };
   // const sensorDataInterval = setInterval(sendSensorData, 2000);
 
-  socket.on("message", (message) => {
-    console.log("Received:", message.toString());
-    let sensorDataDisplay = message.toString().split(" ")
-    console.log(sensorDataDisplay)
-    const sendSensorData = () => {
-      const temperature = sensorData[0]
-      const humidity = sensorData[1] // Giả lập độ ẩm từ 50% đến 80%
-      const co2 = sensorData[2] // Giả lập CO2 từ 400 ppm đến 800 ppm
-      const sensorData = { temperature, humidity, co2 };
-      socket.send(JSON.stringify(sensorData)); // Chuyển đổi sang chuỗi JSON trước khi gửi
-      console.log(
-        `Temperature: ${temperature} - Humidity: ${humidity} - CO2: ${co2}`
-      );
-    }
-  });
+  // Inside the 'socket.on("message")' event handler
+socket.on("message", (message) => {
+  console.log("Received:", message.toString());
+  let sensorData = message.toString().split(" ");
+  const temperature = sensorData[0];
+  const humidity = sensorData[1];
+  const dataToSend = { temperature, humidity };
+  socket.send(JSON.stringify(dataToSend));
+  console.log(`Temperature: ${temperature} - Humidity: ${humidity}`);
+});
+
     
     
     
